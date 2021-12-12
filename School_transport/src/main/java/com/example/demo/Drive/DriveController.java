@@ -1,6 +1,5 @@
 package com.example.demo.Drive;
 
-import com.example.demo.student.Student;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +23,14 @@ public class DriveController {
     public Drive saveDrive(@RequestBody Drive drive){
         return driveService.getDrive(drive);
     }
+    @PostMapping("/add_student")
+    public ResponseEntity<Drive> addStudentsToDrive(@RequestBody Form form){
+        System.out.println(form.getdrive().getId());
+        System.out.println(form.getstudentId());
+        driveService.addStudentsToDrive(form.getdrive(),form.getstudentId());
+        return ResponseEntity.ok().build();
+    }
+
 
     @DeleteMapping("/{id}")
     public void deleteDrive(@PathVariable String id){
@@ -31,7 +38,20 @@ public class DriveController {
     }
 
     @PutMapping ("/{id}")
-    public Drive updateDrive( @PathVariable String id ,@RequestBody Drive data){
-        return driveService.updateDrive(id , data);
+    public Drive updateDrive( @PathVariable String id ,@RequestBody Drive drive){
+        return driveService.updateDrive(id , drive);
+    }
+}
+
+class Form {
+    private Drive drive;
+    private long studentId;
+
+    public Drive getdrive() {
+        return drive;
+    }
+
+    public long getstudentId() {
+        return studentId;
     }
 }

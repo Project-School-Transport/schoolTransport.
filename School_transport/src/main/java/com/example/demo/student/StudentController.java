@@ -1,8 +1,10 @@
 package com.example.demo.student;
 
+import com.example.demo.Drive.Drive;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -18,7 +20,10 @@ public class StudentController {
     public ResponseEntity<List<Student>> getStudents(){
         return ResponseEntity.ok().body(studentService.getStudents());
     }
-
+    @GetMapping("/{id}")
+    public Collection<Drive> getDrive(@PathVariable String id ){
+        return studentService.getDrive(id);
+    }
     @PostMapping
     public Student saveStudent(@RequestBody Student student){
         return studentService.getStudent(student);

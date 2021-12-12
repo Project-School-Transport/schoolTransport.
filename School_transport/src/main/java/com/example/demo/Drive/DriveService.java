@@ -10,9 +10,11 @@ import java.util.List;
 @Service
 public class DriveService {
     private final DriveRepo driveRepo;
+    private final StudentRepo studentRepo;
     @Autowired
-    public DriveService(DriveRepo driveRepo) {
+    public DriveService(DriveRepo driveRepo, StudentRepo studentRepo) {
         this.driveRepo = driveRepo;
+        this.studentRepo = studentRepo;
     }
 
 
@@ -21,8 +23,13 @@ public class DriveService {
     }
 
     public Drive getDrive(Drive drive){
-
         return driveRepo.save(drive);
+    }
+    public void addStudentsToDrive(Drive driveName , Long studentName ){
+       Drive drive = driveRepo.findById(driveName.getId()).orElse(null);
+        Student student=studentRepo.findById(studentName).orElse(null);
+        drive.getStudents().add(student);
+        driveRepo.save(drive);
     }
 
     public void deletDrive(String id){

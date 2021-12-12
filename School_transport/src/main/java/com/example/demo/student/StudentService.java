@@ -1,8 +1,10 @@
 package com.example.demo.student;
 
+import com.example.demo.Drive.Drive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -17,8 +19,15 @@ public class StudentService {
         return studentRepo.findAll();
     }
 
+    public Collection<Drive> getDrive(String id){
+        Long Student_id = Long.parseLong(id);
+        Student student= studentRepo.findById(Student_id).orElse(null);
+        System.out.println(student.getDrives());
+        return student.getDrives();
+    }
+
     public Student getStudent(Student Student){
-        System.out.println(Student.getisActiveAm() + "  "+Student.getisActivePm());
+
         return studentRepo.save(Student);
     }
 
@@ -35,8 +44,8 @@ public class StudentService {
             student.setPassWord(data.getPassWord() );
             student.setLongitude(data.getLongitude());
             student.setLatitude( data.getLatitude());
-            student.setActiveAm(!student.getisActiveAm());
-            student.setActivePm(!student.getisActivePm());
+            student.setActiveAm(!student.isActiveAm());
+            student.setActivePm(!student.isActivePm());
             studentRepo.save(student);
         }
 

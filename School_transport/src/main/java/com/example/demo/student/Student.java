@@ -1,6 +1,13 @@
 package com.example.demo.student;
 
+import com.example.demo.Drive.Drive;
+import com.example.demo.School.School;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "Students")
@@ -16,10 +23,15 @@ public class Student {
     private boolean isActiveAm = true;
     private boolean isActivePm = true;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "students")
+    private Collection<Drive> drives = new ArrayList<>();
+
+   
     public Student() {
     }
 
-    public Student(Long id, String fName, String lName, Long passWord, Long latitude, Long longitude, boolean isActiveAm, boolean isActivePm) {
+    public Student(Long id, String fName, String lName, Long passWord, Long latitude, Long longitude, boolean isActiveAm, boolean isActivePm, Collection<Drive> drives) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
@@ -28,6 +40,7 @@ public class Student {
         this.longitude = longitude;
         this.isActiveAm = isActiveAm;
         this.isActivePm = isActivePm;
+        this.drives = drives;
     }
 
     public Long getId() {
@@ -78,33 +91,27 @@ public class Student {
         this.longitude = longitude;
     }
 
-    public boolean getisActiveAm() {
+    public boolean isActiveAm() {
         return isActiveAm;
     }
 
     public void setActiveAm(boolean activeAm) {
-        this.isActiveAm = activeAm;
+        isActiveAm = activeAm;
     }
 
-    public boolean getisActivePm() {
+    public boolean isActivePm() {
         return isActivePm;
     }
 
     public void setActivePm(boolean activePm) {
-        this.isActivePm = activePm;
+        isActivePm = activePm;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", fName='" + fName + '\'' +
-                ", lName='" + lName + '\'' +
-                ", passWord=" + passWord +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", isActiveAm=" + isActiveAm +
-                ", isActivePm=" + isActivePm +
-                '}';
+    public Collection<Drive> getDrives() {
+        return drives;
+    }
+
+    public void setDrives(Collection<Drive> drives) {
+        this.drives = drives;
     }
 }
