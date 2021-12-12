@@ -93,4 +93,18 @@ public class Student {
     public void setActivePm(boolean activePm) {
         this.isActivePm = activePm;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", fName='" + fName + '\'' +
+                ", lName='" + lName + '\'' +
+                ", passWord=" + passWord +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", isActiveAm=" + isActiveAm +
+                ", isActivePm=" + isActivePm +
+                '}';
+    }
 }
