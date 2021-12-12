@@ -1,9 +1,9 @@
-package com.example.demo.students;
+package com.example.demo.student;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Student")
+@Table(name = "Students")
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

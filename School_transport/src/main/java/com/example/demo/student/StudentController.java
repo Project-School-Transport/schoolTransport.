@@ -1,4 +1,4 @@
-package com.example.demo.students;
+package com.example.demo.student;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
