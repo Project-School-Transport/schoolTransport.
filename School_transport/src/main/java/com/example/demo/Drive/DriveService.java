@@ -29,5 +29,19 @@ public class DriveService {
         Long Drive_id = Long.parseLong(id);
         driveRepo.deleteById(Drive_id);
     }
+    public Drive updateDrive(String id , Drive data){
+        Long student_id = Long.parseLong(id);
+        Drive drive= driveRepo.findById(student_id).orElse(null);
+        System.out.println(drive.toString());
+        if(drive != null){
+            drive.setPassWord(data.getPassWord() );
+            drive.setPhoneNumber(data.getPhoneNumber());
+            drive.setPlatNumber(data.getPlatNumber());
+            driveRepo.save(drive);
+        }
+
+        return drive;
+    }
+
 
 }

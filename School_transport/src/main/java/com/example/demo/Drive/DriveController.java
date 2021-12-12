@@ -29,4 +29,9 @@ public class DriveController {
     public void deleteDrive(@PathVariable String id){
         driveService.deletDrive(id);
     }
+
+    @PutMapping ("/{id}")
+    public Drive updateDrive( @PathVariable String id ,@RequestBody Drive data){
+        return driveService.updateDrive(id , data);
+    }
 }
