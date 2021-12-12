@@ -4,6 +4,8 @@ import com.example.demo.Drive.Drive;
 import com.example.demo.student.Student;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "School")
@@ -15,17 +17,18 @@ public class School {
     private Long latitude;
     private Long longitude;
     private Long password;
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "drive_id")
-    private Drive drive;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "student_id")
-    private Student student;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "school")
+        private List<Drive> drive = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "school")
+    private List<Student> student = new ArrayList<>();
+
     public School() {
+
     }
 
-    public School(long id, String name, Long latitude, Long longitude, Long password, Drive drive, Student student) {
+    public School(long id, String name, Long latitude, Long longitude, Long password, List<Drive> drive, List<Student> student) {
         this.id = id;
         this.name = name;
         this.latitude = latitude;
@@ -75,19 +78,19 @@ public class School {
         this.password = password;
     }
 
-    public Drive getDrive() {
+    public List<Drive> getDrive() {
         return drive;
     }
 
-    public void setDrive(Drive drive) {
+    public void setDrive(List<Drive> drive) {
         this.drive = drive;
     }
 
-    public Student getStudent() {
+    public List<Student> getStudent() {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(List<Student> student) {
         this.student = student;
     }
 }

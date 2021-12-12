@@ -3,6 +3,7 @@ package com.example.demo.Drive;
 import com.example.demo.School.School;
 import com.example.demo.student.Student;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,12 +25,15 @@ public class Drive {
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Student> students = new ArrayList<>();
 
-//    @ManyToOne(cascade = CascadeType.ALL, mappedBy = "drive")
-//    private List<School> school = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JoinColumn(name ="school_id")
+    private School school;
+
     public Drive() {
     }
 
-    public Drive(Long id, String fName, String lName, Long passWord, Long phoneNumber, Long platNumber, Collection<Student> students) {
+    public Drive(Long id, String fName, String lName, Long passWord, Long phoneNumber, Long platNumber, Collection<Student> students, School school) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
@@ -37,6 +41,7 @@ public class Drive {
         this.phoneNumber = phoneNumber;
         this.platNumber = platNumber;
         this.students = students;
+        this.school = school;
     }
 
     public Long getId() {
@@ -93,5 +98,13 @@ public class Drive {
 
     public void setStudents(Collection<Student> students) {
         this.students = students;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
     }
 }

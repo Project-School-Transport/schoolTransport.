@@ -3,6 +3,7 @@ package com.example.demo.student;
 import com.example.demo.Drive.Drive;
 import com.example.demo.School.School;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,11 +28,16 @@ public class Student {
     @ManyToMany(mappedBy = "students")
     private Collection<Drive> drives = new ArrayList<>();
 
-   
+
+    @ManyToOne (fetch = FetchType.LAZY,optional = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JoinColumn(name ="school_id")
+    private School school;
+
     public Student() {
     }
 
-    public Student(Long id, String fName, String lName, Long passWord, Long latitude, Long longitude, boolean isActiveAm, boolean isActivePm, Collection<Drive> drives) {
+    public Student(Long id, String fName, String lName, Long passWord, Long latitude, Long longitude, boolean isActiveAm, boolean isActivePm, Collection<Drive> drives, School school) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
@@ -41,6 +47,7 @@ public class Student {
         this.isActiveAm = isActiveAm;
         this.isActivePm = isActivePm;
         this.drives = drives;
+        this.school = school;
     }
 
     public Long getId() {
@@ -113,5 +120,13 @@ public class Student {
 
     public void setDrives(Collection<Drive> drives) {
         this.drives = drives;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
     }
 }
