@@ -19,15 +19,15 @@ public class StudentService {
         return studentRepo.findAll();
     }
 
-    public Collection<Drive> getDrive(String id){
-        Long Student_id = Long.parseLong(id);
-        Student student= studentRepo.findById(Student_id).orElse(null);
-        System.out.println(student.getDrives());
-        return student.getDrives();
-    }
+//    public Collection<Drive> getDrive(String id){
+//        Long Student_id = Long.parseLong(id);
+//        Student student= studentRepo.findById(Student_id).orElse(null);
+//        System.out.println(student.getDrives());
+//        return student.getDrives();
+//    }
 
     public Student getStudent(Student Student){
-
+        System.out.println(Student.toString());
         return studentRepo.save(Student);
     }
 
@@ -51,6 +51,13 @@ public class StudentService {
 
         return student;
     }
+    public List<Student> getDrivesByAvailableAm() {
+        System.out.println(studentRepo.findAllByisActiveAm(true));
+        return studentRepo.findAllByisActiveAm(true);
+    }
 
+    public List<Student> getDrivesByAvailablePm() {
 
+        return studentRepo.findAllByisActivePm(true);
+    }
 }

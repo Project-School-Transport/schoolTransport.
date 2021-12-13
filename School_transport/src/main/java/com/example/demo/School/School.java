@@ -28,14 +28,12 @@ public class School {
 
     }
 
-    public School(long id, String name, Long latitude, Long longitude, Long password, List<Drive> drive, List<Student> student) {
+    public School(long id, String name, Long latitude, Long longitude, Long password) {
         this.id = id;
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
         this.password = password;
-        this.drive = drive;
-        this.student = student;
     }
 
     public long getId() {
@@ -76,21 +74,5 @@ public class School {
 
     public void setPassword(Long password) {
         this.password = password;
-    }
-
-    public List<Drive> getDrive() {
-        return drive;
-    }
-
-    public void setDrive(List<Drive> drive) {
-        this.drive = drive;
-    }
-
-    public List<Student> getStudent() {
-        return student;
-    }
-
-    public void setStudent(List<Student> student) {
-        this.student = student;
     }
 }

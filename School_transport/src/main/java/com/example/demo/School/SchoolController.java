@@ -17,14 +17,18 @@ public class SchoolController {
     public SchoolController(SchoolService schoolService) {
         this.schoolService = schoolService;
     }
-//    @GetMapping
-//    public ResponseEntity<List<School>> getSchools(){
-//        return ResponseEntity.ok().body(schoolService.getSchools());
-//    }
+    @GetMapping
+    public ResponseEntity<List<School>> getSchools(){
+        return ResponseEntity.ok().body(schoolService.getSchools());
+    }
 
     @PostMapping
     public School saveSchool(@RequestBody School School){
         return schoolService.getSchool(School);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteStudent(@PathVariable String id){
+        schoolService.deletStudent(id);
     }
 
 }

@@ -24,12 +24,21 @@ public class Student {
     private boolean isActiveAm = true;
     private boolean isActivePm = true;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "students")
-    private Collection<Drive> drives = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY ,optional = true)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JoinColumn(name ="drive_id")
+    private  Drive  drive;
 
 
-    @ManyToOne (fetch = FetchType.LAZY,optional = false)
+
+
+
+//    @JsonIgnore
+//    @ManyToMany(mappedBy = "students")
+//    private Collection<Drive> drives = new ArrayList<>();
+
+
+    @ManyToOne (fetch = FetchType.EAGER,optional = true)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JoinColumn(name ="school_id")
     private School school;
@@ -37,7 +46,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(Long id, String fName, String lName, Long passWord, Long latitude, Long longitude, boolean isActiveAm, boolean isActivePm, Collection<Drive> drives, School school) {
+    public Student(Long id, String fName, String lName, Long passWord, Long latitude, Long longitude, boolean isActiveAm, boolean isActivePm, Drive drive, School school) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
@@ -46,7 +55,7 @@ public class Student {
         this.longitude = longitude;
         this.isActiveAm = isActiveAm;
         this.isActivePm = isActivePm;
-        this.drives = drives;
+        this.drive = drive;
         this.school = school;
     }
 
@@ -103,7 +112,7 @@ public class Student {
     }
 
     public void setActiveAm(boolean activeAm) {
-        isActiveAm = activeAm;
+       this.isActiveAm = activeAm;
     }
 
     public boolean isActivePm() {
@@ -111,15 +120,15 @@ public class Student {
     }
 
     public void setActivePm(boolean activePm) {
-        isActivePm = activePm;
+        this.isActivePm = activePm;
     }
 
-    public Collection<Drive> getDrives() {
-        return drives;
+    public Drive getDrive() {
+        return drive;
     }
 
-    public void setDrives(Collection<Drive> drives) {
-        this.drives = drives;
+    public void setDrive(Drive drive) {
+        this.drive = drive;
     }
 
     public School getSchool() {
@@ -128,5 +137,20 @@ public class Student {
 
     public void setSchool(School school) {
         this.school = school;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", fName='" + fName + '\'' +
+                ", lName='" + lName + '\'' +
+                ", passWord=" + passWord +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", isActiveAm=" + isActiveAm +
+                ", isActivePm=" + isActivePm +
+                ", school=" + school +
+                '}';
     }
 }

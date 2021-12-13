@@ -16,16 +16,19 @@ public class Drive {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String fName;
-    private String lName;
+    private String fname;
+    private String lname;
     private Long passWord;
     private Long phoneNumber;
     private Long platNumber;
+    private boolean isActiveAm ;
+    private boolean isActivePm ;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Student> students = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "drive")
+    private List<Student> student = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.EAGER)
+
+    @ManyToOne(fetch = FetchType.EAGER ,optional = true)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JoinColumn(name ="school_id")
     private School school;
@@ -33,14 +36,16 @@ public class Drive {
     public Drive() {
     }
 
-    public Drive(Long id, String fName, String lName, Long passWord, Long phoneNumber, Long platNumber, Collection<Student> students, School school) {
+    public Drive(Long id, String fname, String lname, Long passWord, Long phoneNumber, Long platNumber, boolean isActiveAm, boolean isActivePm, List<Student> student, School school) {
         this.id = id;
-        this.fName = fName;
-        this.lName = lName;
+        this.fname = fname;
+        this.lname = lname;
         this.passWord = passWord;
         this.phoneNumber = phoneNumber;
         this.platNumber = platNumber;
-        this.students = students;
+        this.isActiveAm = isActiveAm;
+        this.isActivePm = isActivePm;
+        this.student = student;
         this.school = school;
     }
 
@@ -52,20 +57,20 @@ public class Drive {
         this.id = id;
     }
 
-    public String getfName() {
-        return fName;
+    public String getFname() {
+        return fname;
     }
 
-    public void setfName(String fName) {
-        this.fName = fName;
+    public void setFname(String fname) {
+        this.fname = fname;
     }
 
-    public String getlName() {
-        return lName;
+    public String getLname() {
+        return lname;
     }
 
-    public void setlName(String lName) {
-        this.lName = lName;
+    public void setLname(String lname) {
+        this.lname = lname;
     }
 
     public Long getPassWord() {
@@ -92,12 +97,28 @@ public class Drive {
         this.platNumber = platNumber;
     }
 
-    public Collection<Student> getStudents() {
-        return students;
+    public boolean isActiveAm() {
+        return isActiveAm;
     }
 
-    public void setStudents(Collection<Student> students) {
-        this.students = students;
+    public void setActiveAm(boolean activeAm) {
+        isActiveAm = activeAm;
+    }
+
+    public boolean isActivePm() {
+        return isActivePm;
+    }
+
+    public void setActivePm(boolean activePm) {
+        isActivePm = activePm;
+    }
+
+    public List<Student> getStudent() {
+        return student;
+    }
+
+    public void setStudent(List<Student> student) {
+        this.student = student;
     }
 
     public School getSchool() {
@@ -106,5 +127,20 @@ public class Drive {
 
     public void setSchool(School school) {
         this.school = school;
+    }
+
+    @Override
+    public String toString() {
+        return "Drive{" +
+                "id=" + id +
+                ", fname='" + fname + '\'' +
+                ", lname='" + lname + '\'' +
+                ", passWord=" + passWord +
+                ", phoneNumber=" + phoneNumber +
+                ", platNumber=" + platNumber +
+                ", isActiveAm=" + isActiveAm +
+                ", isActivePm=" + isActivePm +
+                ", school=" + school +
+                '}';
     }
 }
