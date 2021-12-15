@@ -47,4 +47,5 @@ public class StudentController {
     public Student updateStudent( @PathVariable String id ,@RequestBody Student student){
         return studentService.updateStudent(id , student);
     }
+
 }

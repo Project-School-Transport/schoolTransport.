@@ -70,8 +70,8 @@ public class DriveService {
     }
 
 
-    public List<Drive> getDrivesByAvailable() {
-        System.out.println(driveRepo.findAllByisActiveAm(true));
-        return driveRepo.findAllByisActiveAm(true);
-    }
+//    public List<Drive> getDrivesByAvailable() {
+//        System.out.println(driveRepo.findAllByisActiveAm(true));
+//        return driveRepo.findAllByisActiveAm(true);
+//    }
 }

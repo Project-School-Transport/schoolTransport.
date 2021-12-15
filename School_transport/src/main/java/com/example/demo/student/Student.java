@@ -19,8 +19,8 @@ public class Student {
     private String fName;
     private String lName;
     private Long passWord;
-    private Long latitude;
-    private Long longitude;
+    private float latitude;
+    private float longitude;
     private boolean isActiveAm = true;
     private boolean isActivePm = true;
 
@@ -38,7 +38,7 @@ public class Student {
 //    private Collection<Drive> drives = new ArrayList<>();
 
 
-    @ManyToOne (fetch = FetchType.EAGER,optional = true)
+    @ManyToOne (fetch = FetchType.EAGER,optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JoinColumn(name ="school_id")
     private School school;
@@ -46,7 +46,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(Long id, String fName, String lName, Long passWord, Long latitude, Long longitude, boolean isActiveAm, boolean isActivePm, Drive drive, School school) {
+    public Student(Long id, String fName, String lName, Long passWord, float latitude, float longitude, boolean isActiveAm, boolean isActivePm, Drive drive, School school) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
@@ -91,19 +91,19 @@ public class Student {
         this.passWord = passWord;
     }
 
-    public Long getLatitude() {
+    public float getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Long latitude) {
+    public void setLatitude(float latitude) {
         this.latitude = latitude;
     }
 
-    public Long getLongitude() {
+    public float getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Long longitude) {
+    public void setLongitude(float longitude) {
         this.longitude = longitude;
     }
 

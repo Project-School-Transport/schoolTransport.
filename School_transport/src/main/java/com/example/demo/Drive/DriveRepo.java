@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface DriveRepo extends JpaRepository<Drive, Long> {
 
-    public List<Drive> findAllByisActiveAm(boolean isActiveAm);
+//    public List<Drive> findAllByisActiveAm(boolean isActiveAm);
 }

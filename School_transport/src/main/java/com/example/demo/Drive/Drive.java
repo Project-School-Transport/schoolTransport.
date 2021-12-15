@@ -21,8 +21,7 @@ public class Drive {
     private Long passWord;
     private Long phoneNumber;
     private Long platNumber;
-    private boolean isActiveAm ;
-    private boolean isActivePm ;
+
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "drive")
     private List<Student> student = new ArrayList<>();
@@ -36,15 +35,13 @@ public class Drive {
     public Drive() {
     }
 
-    public Drive(Long id, String fname, String lname, Long passWord, Long phoneNumber, Long platNumber, boolean isActiveAm, boolean isActivePm, List<Student> student, School school) {
+    public Drive(Long id, String fname, String lname, Long passWord, Long phoneNumber, Long platNumber, List<Student> student, School school) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.passWord = passWord;
         this.phoneNumber = phoneNumber;
         this.platNumber = platNumber;
-        this.isActiveAm = isActiveAm;
-        this.isActivePm = isActivePm;
         this.student = student;
         this.school = school;
     }
@@ -97,22 +94,6 @@ public class Drive {
         this.platNumber = platNumber;
     }
 
-    public boolean isActiveAm() {
-        return isActiveAm;
-    }
-
-    public void setActiveAm(boolean activeAm) {
-        isActiveAm = activeAm;
-    }
-
-    public boolean isActivePm() {
-        return isActivePm;
-    }
-
-    public void setActivePm(boolean activePm) {
-        isActivePm = activePm;
-    }
-
     public List<Student> getStudent() {
         return student;
     }
@@ -127,20 +108,5 @@ public class Drive {
 
     public void setSchool(School school) {
         this.school = school;
-    }
-
-    @Override
-    public String toString() {
-        return "Drive{" +
-                "id=" + id +
-                ", fname='" + fname + '\'' +
-                ", lname='" + lname + '\'' +
-                ", passWord=" + passWord +
-                ", phoneNumber=" + phoneNumber +
-                ", platNumber=" + platNumber +
-                ", isActiveAm=" + isActiveAm +
-                ", isActivePm=" + isActivePm +
-                ", school=" + school +
-                '}';
     }
 }

@@ -14,8 +14,8 @@ public class School {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
-    private Long latitude;
-    private Long longitude;
+    private float latitude;
+    private float longitude;
     private Long password;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "school")
@@ -28,7 +28,7 @@ public class School {
 
     }
 
-    public School(long id, String name, Long latitude, Long longitude, Long password) {
+    public School(long id, String name, float latitude, float longitude, Long password) {
         this.id = id;
         this.name = name;
         this.latitude = latitude;
@@ -52,19 +52,19 @@ public class School {
         this.name = name;
     }
 
-    public Long getLatitude() {
+    public float getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Long latitude) {
+    public void setLatitude(float latitude) {
         this.latitude = latitude;
     }
 
-    public Long getLongitude() {
+    public float getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Long longitude) {
+    public void setLongitude(float longitude) {
         this.longitude = longitude;
     }
 

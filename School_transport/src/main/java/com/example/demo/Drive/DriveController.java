@@ -20,10 +20,10 @@ public class DriveController {
         return ResponseEntity.ok().body(driveService.getDrives());
     }
 
-    @GetMapping("/availableAm")
-    public List <Drive> getDrivesByAvailable(){
-        return driveService.getDrivesByAvailable();
-    }
+//    @GetMapping("/availableAm")
+//    public List <Drive> getDrivesByAvailable(){
+//        return driveService.getDrivesByAvailable();
+//    }
 
 
     @PostMapping
