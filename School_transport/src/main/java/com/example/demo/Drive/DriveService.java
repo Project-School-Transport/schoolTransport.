@@ -1,5 +1,7 @@
 package com.example.demo.Drive;
 
+import com.example.demo.User.User;
+import com.example.demo.User.UserRepo;
 import com.example.demo.student.Student;
 import com.example.demo.student.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +13,12 @@ import java.util.List;
 public class DriveService {
     private final DriveRepo driveRepo;
     private final StudentRepo studentRepo;
-
+private final UserRepo userRepo;
     @Autowired
-    public DriveService(DriveRepo driveRepo, StudentRepo studentRepo) {
+    public DriveService(DriveRepo driveRepo, StudentRepo studentRepo, UserRepo userRepo) {
         this.driveRepo = driveRepo;
         this.studentRepo = studentRepo;
+        this.userRepo = userRepo;
     }
 
 
@@ -24,8 +27,8 @@ public class DriveService {
     }
 
     public Drive getDrive(Drive drive) {
-        System.out.println(drive +"  igg" +   drive.toString());
-        System.out.println(driveRepo.save(drive));
+        User user=userRepo.findById(drive.getUser().getId()).orElse(null);
+        drive.setUser(user);
         return driveRepo.save(drive);
 
     }

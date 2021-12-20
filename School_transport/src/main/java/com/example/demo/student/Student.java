@@ -2,20 +2,19 @@ package com.example.demo.student;
 
 import com.example.demo.Drive.Drive;
 import com.example.demo.School.School;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.demo.User.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name = "Students")
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
+    private String username;
     private String fName;
     private String lName;
     private Long passWord;
@@ -30,24 +29,21 @@ public class Student {
     private  Drive  drive;
 
 
-
-
-
-//    @JsonIgnore
-//    @ManyToMany(mappedBy = "students")
-//    private Collection<Drive> drives = new ArrayList<>();
-
-
     @ManyToOne (fetch = FetchType.EAGER,optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JoinColumn(name ="school_id")
     private School school;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    private User user;
+
     public Student() {
     }
 
-    public Student(Long id, String fName, String lName, Long passWord, float latitude, float longitude, boolean isActiveAm, boolean isActivePm, Drive drive, School school) {
+
+    public Student(Long id, String username, String fName, String lName, Long passWord, float latitude, float longitude, boolean isActiveAm, boolean isActivePm, Drive drive, School school, User user) {
         this.id = id;
+        this.username = username;
         this.fName = fName;
         this.lName = lName;
         this.passWord = passWord;
@@ -57,6 +53,15 @@ public class Student {
         this.isActivePm = isActivePm;
         this.drive = drive;
         this.school = school;
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {
@@ -65,6 +70,14 @@ public class Student {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getfName() {
@@ -120,7 +133,7 @@ public class Student {
     }
 
     public void setActivePm(boolean activePm) {
-        this.isActivePm = activePm;
+       this.isActivePm = activePm;
     }
 
     public Drive getDrive() {
@@ -137,20 +150,5 @@ public class Student {
 
     public void setSchool(School school) {
         this.school = school;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", fName='" + fName + '\'' +
-                ", lName='" + lName + '\'' +
-                ", passWord=" + passWord +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", isActiveAm=" + isActiveAm +
-                ", isActivePm=" + isActivePm +
-                ", school=" + school +
-                '}';
     }
 }

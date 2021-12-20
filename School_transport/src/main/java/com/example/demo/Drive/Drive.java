@@ -1,21 +1,21 @@
 package com.example.demo.Drive;
 
 import com.example.demo.School.School;
+import com.example.demo.User.User;
 import com.example.demo.student.Student;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "Drives")
 public class Drive {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String username;
     private String fname;
     private String lname;
     private Long passWord;
@@ -31,11 +31,14 @@ public class Drive {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JoinColumn(name ="school_id")
     private School school;
+    @OneToOne(fetch = FetchType.EAGER)
+    private User user;
 
     public Drive() {
+
     }
 
-    public Drive(Long id, String fname, String lname, Long passWord, Long phoneNumber, Long platNumber, List<Student> student, School school) {
+    public Drive(Long id, String fname, String lname, Long passWord, Long phoneNumber, Long platNumber, List<Student> student, School school, User user) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
@@ -44,6 +47,23 @@ public class Drive {
         this.platNumber = platNumber;
         this.student = student;
         this.school = school;
+        this.user = user;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {

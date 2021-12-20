@@ -26,6 +26,12 @@ public class StudentController {
 //        return studentService.getDrive(id);
 //    }
 
+    @GetMapping("/{id}")
+    public Student student(@PathVariable String id){
+        return studentService.getStudent(id);
+    }
+
+
     @GetMapping("/availableAm")
     public List <Student> getDrivesByAvailableAm(){
         return studentService.getDrivesByAvailableAm();
@@ -36,7 +42,7 @@ public class StudentController {
     }
     @PostMapping
     public Student saveStudent(@RequestBody Student student){
-        return studentService.getStudent(student);
+        return studentService.saveStudent(student);
     }
 
     @DeleteMapping("/{id}")

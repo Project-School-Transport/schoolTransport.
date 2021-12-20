@@ -1,7 +1,9 @@
 package com.example.demo.School;
 
 import com.example.demo.Drive.Drive;
+import com.example.demo.User.User;
 import com.example.demo.student.Student;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,12 +13,11 @@ import java.util.List;
 @Table(name = "School")
 public class School {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
     private float latitude;
     private float longitude;
-    private Long password;
+
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "school")
         private List<Drive> drive = new ArrayList<>();
@@ -24,16 +25,21 @@ public class School {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "school")
     private List<Student> student = new ArrayList<>();
 
+//    @JsonManagedReference
+//    cascade = CascadeType.ALL ,optional = true
+    @OneToOne(fetch = FetchType.EAGER)
+    private User user;
     public School() {
 
     }
 
-    public School(long id, String name, float latitude, float longitude, Long password) {
+    public School(long id, float latitude, float longitude, List<Drive> drive, List<Student> student, User user) {
         this.id = id;
-        this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.password = password;
+        this.drive = drive;
+        this.student = student;
+        this.user = user;
     }
 
     public long getId() {
@@ -42,14 +48,6 @@ public class School {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public float getLatitude() {
@@ -68,11 +66,27 @@ public class School {
         this.longitude = longitude;
     }
 
-    public Long getPassword() {
-        return password;
+    public List<Drive> getDrive() {
+        return drive;
     }
 
-    public void setPassword(Long password) {
-        this.password = password;
+    public void setDrive(List<Drive> drive) {
+        this.drive = drive;
+    }
+
+    public List<Student> getStudent() {
+        return student;
+    }
+
+    public void setStudent(List<Student> student) {
+        this.student = student;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

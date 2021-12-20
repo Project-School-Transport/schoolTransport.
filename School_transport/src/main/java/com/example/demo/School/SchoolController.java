@@ -1,8 +1,10 @@
 package com.example.demo.School;
 
+import com.example.demo.Drive.Drive;
 import com.example.demo.student.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,11 +26,16 @@ public class SchoolController {
 
     @PostMapping
     public School saveSchool(@RequestBody School School){
-        return schoolService.getSchool(School);
+        System.out.println(School.getUser());
+        return schoolService. saveSchool(School);
     }
-    @DeleteMapping("/{id}")
-    public void deleteStudent(@PathVariable String id){
-        schoolService.deletStudent(id);
+
+
+
+    @GetMapping("/{id}")
+
+    public School getSchool(@PathVariable String id){
+        return schoolService.getSchool(id);
     }
 
 }
