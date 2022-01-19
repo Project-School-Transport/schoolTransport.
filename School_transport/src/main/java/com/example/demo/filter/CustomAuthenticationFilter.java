@@ -2,6 +2,7 @@ package com.example.demo.filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.example.demo.User.UserRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,9 +27,11 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
+    private final UserRepo userRepo;
 
-    public CustomAuthenticationFilter(AuthenticationManager authenticationManager ){
+    public CustomAuthenticationFilter(AuthenticationManager authenticationManager, UserRepo userRepo){
         this.authenticationManager = authenticationManager;
+        this.userRepo = userRepo;
     }
 
     @Override
@@ -44,18 +47,23 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         }
 
         // User information that will be used to authenticate
-        String email = user.getEmail();
+        String username = user.getUsername();
         String password = user.getPassword();
 
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email,password);
+
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username,password);
         return authenticationManager.authenticate(authenticationToken);
     }
 
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
         User user = (User)authentication.getPrincipal();
+        com.example.demo.User.User dbUser=userRepo.findByUsername(user.getUsername());
+        Map<String, String> payload = new HashMap<>();
+        payload.put("id",dbUser.getId().toString());
         Algorithm algorithm = Algorithm.HMAC256("jwt_super_secret".getBytes());
         String access_token = JWT.create()
                 .withSubject(user.getUsername())
+                .withPayload(payload)
                 .withExpiresAt(new Date(System.currentTimeMillis() + 480 * 60 * 1000))
                 .withIssuer(request.getRequestURI().toString())
                 .withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))

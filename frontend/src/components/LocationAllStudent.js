@@ -19,7 +19,7 @@ const LocationAllStudent= () => {
     }
   const mapStyles = {        
     height: "90vh",
-    width: "90%"};
+    };
   
   useEffect(() => {
     axios
@@ -72,7 +72,8 @@ const LocationAllStudent= () => {
                   
               setInfoOpen(false)}}
             >
-              <p>{selected.fName}</p>
+              <p>{selected.fName + "\n"+ " the number is:"+selected.phone} </p>
+              
             </InfoWindow>
             )
          }

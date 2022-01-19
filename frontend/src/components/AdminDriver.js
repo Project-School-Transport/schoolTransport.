@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import DriverItem from './DriverItem'
+import DriverItem from './PageSchool/DriverItem'
 function AdminDriver() {
   const [drivers, setDrivers] = useState([]);
 

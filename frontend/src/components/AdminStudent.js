@@ -11,6 +11,7 @@ function AdminStudent({ student, setStudents }) {
         axios
       .delete(`http://localhost:8080/student/${student.id}`)
       .then((res) => {
+        console.log(res)
         setStudents((students) => {
           return students.filter((element) => {
             return element.id !== student.id;

@@ -20,8 +20,8 @@ const Location= ( {currentPosition, setCurrentPosition }) => {
   },[])
   
   const mapStyles = {        
-    height: "50vh",
-    width: "50%"};
+    height: "39vh",
+   };
 
   
   const onMarkerDragEnd = (e) => {
