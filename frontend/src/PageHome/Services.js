@@ -2,68 +2,61 @@ import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "../style/services.css";
 
-import {
-  FaLocationArrow,
-  FaSistrix,
-  FaHubspot,
-  FaBusinessTime,
-} from "react-icons/fa";
+import { BiTimeFive, BiCurrentLocation } from "react-icons/bi";
+import { CgWebsite } from "react-icons/cg";
+import { MdOutlineAssistantDirection } from "react-icons/md";
 const Services = () => {
   return (
-    <> 
-   
-    <Container className="mt-5  z-index3" id="services" style={{ padding: "91px", top: "60%" }}>
-    <div className=" ms-5  text-center ">
-        <h1>Features </h1>
-        <hr/>
+    <>
+      <Container
+        className="mt-5  z-index3"
+        id="services"
+        style={{ padding: "91px", top: "60%" }}
+      >
+        <div className=" ms-5  text-center ">
+          <h1>Features </h1>
+          <hr />
         </div>
-      <Row>
-        <Col sm={12} md={5} lg={3} className="text-center   cards m-2">
-          <FaLocationArrow size={"2rem"} color={"#09cab8"} className="mb-3" />
-          <h4>Time Management</h4>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam alias
-            rerum ad blanditiis at provident ipsam ea atque sed consectetur
-            deserunt aspernatur magni, animi, odit, cumque voluptate nobis quis
-            cupiditate.
-          </p>
-        </Col>
-        <Col sm={12} md={5} lg={3} className="text-center cards m-2">
-          <FaSistrix size={"2rem"} color={"#09cab8"} className="mb-3" />
-          <h4>Time Management</h4>
+        <Row>
+          <Col sm={12} md={9} lg={5} className="text-center   cards m-2">
+            <BiTimeFive size={"2rem"} color={"#09cab8"} className="mb-3" />
+            <h4>shortening time</h4>
+            <p>Shortening time by knowing who won't go to school</p>
+          </Col>
+          <Col sm={12} md={5} lg={3} className="text-center cards m-2">
+            <BiCurrentLocation
+              size={"2rem"}
+              color={"#09cab8"}
+              className="mb-3"
+            />
+            <h4>Location</h4>
 
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam alias
-            rerum ad blanditiis at provident ipsam ea atque sed consectetur
-            deserunt aspernatur magni, animi, odit, cumque voluptate nobis quis
-            cupiditate.
-          </p>
-        </Col>
-        <Col sm={12} md={5} lg={3} className="text-center m-2 cards">
-          <FaHubspot size={"2rem"} color={"#09cab8"} className="mb-3" />
-          <h4>Time Management</h4>
+            <p>
+              The possibility of adjusting the location in the event of a change
+              in the location of the residence without the need to attend school
+            </p>
+          </Col>
+          <Col sm={12} md={5} lg={3} className="text-center m-2 cards">
+            <CgWebsite size={"2rem"} color={"#09cab8"} className="mb-3" />
+            <h4>Website</h4>
 
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam alias
-            rerum ad blanditiis at provident ipsam ea atque sed consectetur
-            deserunt aspernatur magni, animi, odit, cumque voluptate nobis quis
-            cupiditate.
-          </p>
-        </Col>
-        <Col sm={12} md={5} lg={3} className="text-center m-2  cards">
-          <FaBusinessTime size={"2rem"} color={"#09cab8"} className="mb-3" />
-          <h4>Time Management</h4>
+            <p>
+              Through the website, the driver is constantly informed of
+              attendance
+            </p>
+          </Col>
+          <Col sm={12} md={5} lg={3} className="text-center m-2  cards">
+            <MdOutlineAssistantDirection
+              size={"2rem"}
+              color={"#09cab8"}
+              className="mb-3"
+            />
+            <h4>easy</h4>
 
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam alias
-            rerum ad blanditiis at provident ipsam ea atque sed consectetur
-            deserunt aspernatur magni, animi, odit, cumque voluptate nobis quis
-            cupiditate.
-          </p>
-        </Col>
-      </Row>
-     
-    </Container>
+            <p>Ease of student access to service</p>
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 };

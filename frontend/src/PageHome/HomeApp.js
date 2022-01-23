@@ -1,16 +1,14 @@
-
 import Landing from "./Landing";
 import Services from "./Services";
 import Footer from "./Footer";
 function HomeApp() {
-    return (
-      <div>
+  return (
+    <div>
       <Landing />
       <Services />
       <Footer />
-      </div>
-    );
-  }
-  
-  export default HomeApp;
-  
+    </div>
+  );
+}
+
+export default HomeApp;

@@ -6,12 +6,9 @@ const Landing = () => {
   return (
     <>
       <div className="bg">
-        <Header />    <About />
+        <Header /> <About />
         <div className="overflow"></div>
       </div>
-
-  
-   
     </>
   );
 };

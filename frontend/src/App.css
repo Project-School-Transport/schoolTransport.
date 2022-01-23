@@ -2,8 +2,6 @@
   text-align: center;
 }
 
-
-
 .main{
   display: flex;
   gap: 10px;
@@ -376,7 +374,7 @@ form .field input[type="submit"]:active{
   transform: scale(0.95);
 }
 p{
-  margin-top: 9px;
+  margin-top: 14px
 }
 label {
   display: inline-block;
@@ -393,5 +391,6 @@ label {
   color: #fff;
   font-size: 1em;
 }
+
 /* home */
 

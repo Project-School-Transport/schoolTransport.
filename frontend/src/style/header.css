@@ -1,10 +1,7 @@
 .zIndex {
     z-index: 99;
-    /* background-color: #c838d6; */
-    /* background-color: #3a1493; */
-    /* background: linear-gradient(
-      90deg,
-      rgba(200, 56, 214, 1) 0%,
-      rgba(58, 20, 147, 1) 51%
-    ); */
+  
   }
+  h1 {
+    font-size: 4.5rem;
+}
